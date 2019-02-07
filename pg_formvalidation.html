@@ -1,0 +1,77 @@
+<html>
+<head>
+<title>DOM constraint</title>
+<style>
+input:valid
+{
+background: white url(correct.jpg) right no-repeat;
+}
+</style>
+</head>
+<body>
+<form id="f1">
+FullName:<input type="text" name="fname" size=35 id="fname" pattern="[A-Za-z0-9]{5,35}" required><br>
+<span style="font-style:italic;position:absolute;left:60px">5 or more characters, letters and numbers</span>
+<br>
+<span id="err" style="color:blue;font-style:italic;position:relative;left:60px"></span><br>
+UserName:<input type="text" name="uname" required><br>
+<span style="font-style:italic;position:absolute;left:60px">5 or more characters, letters and numbers</span><br>
+Password:<input type="password" name="pawd" id="pawd" required><span id="err1" style="color:blue;font-style:italic;position:relative;left:60px"></span><br><br>
+Confirm password:<input type="password" id="cpawd" name="cpawd" required><br>
+Email Address:<input type="email" name="emid" required><br>
+Phone Number:<input type="tel" name="fname" placeholder="1-800-ENVATO" pattern="^[0-9]+-[0-9][0-9][0-9]-[A-Z]{6}$" required><br>
+<input type="checkbox" name="ag" required>I have read and agree to the <span style="text=decoration:underline;color:blue">Terms of Service</span>
+<br><input type="submit" name="submit" value="submit" id="submit">
+</form>
+
+<script>
+var btn=document.getElementById('submit');
+function sample()
+{
+	var fname=document.getElementById('fname');
+	var err=document.getElementById('err');
+	if(fname.validity.valueMissing)
+	{
+	document.getElementById("err").innerHTML="Error!! enter fullname";
+
+	}
+	else if(fname.validity.patternMismatch)
+	{
+	document.getElementById("err").innerHTML = "Error!! Fullname accepts only alphabets and numbers";
+	}
+	else
+	{
+	document.getElementById("err").innerHTML ="";
+	}
+	
+
+
+}
+
+
+var password1 = document.getElementById('pawd'); 
+var password2 = document.getElementById('cpawd');
+function checkPasswordValidity() 
+{
+if(password1.value!=password2.value) 
+{ 
+document.getElementById("err1").innerHTML='Passwords must match.'; 
+return false;
+} 
+else 
+{ 
+document.getElementById("err1").innerHTML =""; 
+return true;
+} 
+}
+
+btn.onclick=function(e) {sample();var bool=checkPasswordValidity(); alert("passwd"+bool); if(!bool) { e.preventDefault(); password1.focus(); } };
+
+
+
+
+</script>
+
+</body>
+
+</html>
