@@ -1,0 +1,129 @@
+<html>
+    <head>
+    <title>Submit form</title>
+        <style>
+            .errormessage{
+                color: blue;
+                font-style: italic;
+            }
+			 .errormessage1{
+                color: red;
+                font-style: italic;
+            }
+        </style>
+        
+    </head>
+    <body>
+        <form name="f" >
+            <table>
+                <tr>
+                    <td>Full Name:</td>
+                <td><input type="text" id="name" min="5" pattern="[a-zA-z0-9]{5,50}" required>
+            <span  class="errormessage">minimun 5 character required</span>
+			<span id="err1" class="errormessage1"> </span></td>
+                </tr>
+                 <tr>
+                    <td>UserName:</td>
+                <td><input type="text" id="username" min="5" pattern="[a-zA-z0-9]{5,50}" required>
+            <span  class="errormessage">minimun 5 character required</span>
+<span id="err2" class="errormessage1"> </span></td></td>
+			
+                </tr>
+                 <tr>
+                    <td> Password:</td>
+                <td><input type="password" name="passwords" id="passwords" required> 
+				<span id="err3" class="errormessage1"></span></td></tr>
+            <tr>
+                    <td>Confirm Password:</td>
+                <td> <input type="password" name="conpassword" id="conpassword" required>
+            <span id="err4" class="errormessage1"></span></td>
+                </tr>
+                <tr>
+                    <td>Email Address:</td>
+                <td><input type="email" id="email" required>
+				<span id="err5" class="errormessage1"></span></td>
+                </tr>
+                <tr>
+                    <td>Phone Number:</td>
+                <td><input type="tel" id="phone"  placeholder="1-800-ENVATO" pattern="[0-9]{10}" required>
+				<span id="err6" class="errormessage1"></span></td>
+                </tr>
+                 <tr>
+               <td colspan="2"><input type="checkbox" id="agree" required>I have read and agree to the Terms of Service<br></td>
+                </tr>
+                 <tr>
+                    <td colspan="2"> <input type="submit" value="submit" id="btnsubmit"  ></td>
+                
+                </tr>
+           
+            
+                </table>
+				<script>
+
+
+var btn=document.getElementById('btnsubmit');
+function checkValidity() 
+{
+var names=document.getElementById('name');	
+	if(names.checkValidity)
+	{
+	document.getElementById("err1").innerHTML=names.validationMessage;
+
+	}
+	else if(names.validity.patternMismatch)
+	{
+	document.getElementById("err1").innerHTML = names.validationMessage;
+	}
+	var username=document.getElementById('username');	
+	if(username.checkValidity)
+	{
+	document.getElementById("err2").innerHTML=username.validationMessage;
+
+	}
+	else if(username.validity.patternMismatch)
+	{
+	document.getElementById("err2").innerHTML = username.validationMessage;
+	}
+	var password1 = document.getElementById('conpassword'); 
+var password2 = document.getElementById('passwords');
+if(password1.checkValidity )
+	{
+	document.getElementById("err3").innerHTML=password1.validationMessage;
+
+	}
+	if(password2.checkValidity){
+	document.getElementById("err4").innerHTML=password2.validationMessage;
+	}
+else if(password1.value!=password2.value) 
+{ 
+document.getElementById("err4").innerHTML='Passwords must match.'; 
+return false;
+} 
+var email=document.getElementById('email');	
+	if(email.checkValidity)
+	{
+	document.getElementById("err5").innerHTML=email.validationMessage;
+
+	}
+	else if(email.validity.patternMismatch)
+	{
+	document.getElementById("err5").innerHTML = email.validationMessage;
+	}
+	var phone=document.getElementById('phone');	
+	if(phone.checkValidity)
+	{
+	document.getElementById("err6").innerHTML=phone.validationMessage;
+
+	}
+	else if(phone.validity.patternMismatch)
+	{
+	document.getElementById("err6").innerHTML = "Invalid Number";
+	}
+}
+btn.onclick=function(e) {var bool=checkValidity();if(!bool) { e.preventDefault();} };
+</script>
+</form>
+
+        
+    </body>
+</html>
